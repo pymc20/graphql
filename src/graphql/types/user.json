@@ -1,0 +1,38 @@
+{
+    "typeId": "User",
+    "types": [
+        {
+            "User": {
+                "id": "String",
+                "pass": "String",
+                "name": "String",
+                "userInfo": "UserInfo"
+            }
+        },
+        {
+            "UserInfo": {
+                "phone": "String"
+            }
+        },
+        {
+            "ResolveType": {
+                "done": "Boolean"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "InputUserInfo": {
+                "phone": "String"
+            }
+        },
+        {
+            "UserInput": {
+                "id": "String",
+                "pass": "String",
+                "name": "String",
+                "userInfo": "InputUserInfo"
+            }
+        }
+    ]
+}

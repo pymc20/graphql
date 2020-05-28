@@ -9,6 +9,7 @@ class store {
     getUser(id:String) {
         for(let user of this.users) {
             if(user['id'] == id) {
+                console.log(user);
                 return user;
             }
         }

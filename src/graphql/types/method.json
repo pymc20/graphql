@@ -1,0 +1,8 @@
+{
+    "Query": {
+        "getUser(id: String)": "User"
+    },
+    "Mutation": {
+        "setUser(input: UserInput!)": "ResolveType!"
+    }
+}

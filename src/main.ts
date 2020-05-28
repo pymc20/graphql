@@ -1,5 +1,6 @@
-import { Application } from "https://deno.land/x/oak/mod.ts";
-import { GraphQLService } from "./graphql/index.ts"
+import { Application } from "oak";
+import { GraphQLService } from "./graphql/index.ts";
+
 
 const app = new Application();
 

@@ -1,17 +1,10 @@
-import store from "./store.ts"
+import { getUser, setUser } from './resolvers/UserFunc.ts';
 
 export const resolvers = {
     Query: {
-      getUser: (parent: any, {id}: any, context: any, info: any) => {
-        return store.getUser(id);
-      },
+      getUser,
     },
     Mutation: {
-      setUser: (parent: any, {input}: any, context: any, info: any) => {
-        store.setUser(input);
-        return {
-          done: true,
-        };
-      },
+      setUser,
     },
   };
