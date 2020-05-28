@@ -21,6 +21,12 @@ class Json {
                 result += `type ${keys[0]} {\n`;
                 result = this.appendObjectValue(type,keys[0],result);
             }
+            const inputs = _.get(json,"inputs",[]);
+            for(const input of inputs) {
+                const keys = Object.keys(input);
+                result += `input ${keys[0]} {\n`;
+                result = this.appendObjectValue(input,keys[0],result);
+            }
         } else {
             const keys = Object.keys(json);
             for(const key of keys) {
