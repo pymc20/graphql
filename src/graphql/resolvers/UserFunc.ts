@@ -11,6 +11,14 @@ export const getUser = async (parent: any, id: any, context: any, info: any) => 
     return test;
 }
 
+export const signIn = (parent: any, id: any, context: any, info: any) => {
+
+}
+
+export const signOut = (parent: any, id: any, context: any, info: any) => {
+
+}
+
 export const setUser = async (parent: any, {input}: any, context: any, info: any) => {
     const test = await UserCollection.insertOne(input);
     return {

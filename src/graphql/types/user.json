@@ -4,14 +4,12 @@
         {
             "User": {
                 "id": "String",
-                "pass": "String",
-                "name": "String",
-                "userInfo": "UserInfo"
+                "pass": "String"
             }
         },
         {
-            "UserInfo": {
-                "phone": "String"
+            "Token": {
+                "value": "String"
             }
         },
         {
@@ -22,16 +20,9 @@
     ],
     "inputs": [
         {
-            "InputUserInfo": {
-                "phone": "String"
-            }
-        },
-        {
             "UserInput": {
                 "id": "String",
-                "pass": "String",
-                "name": "String",
-                "userInfo": "InputUserInfo"
+                "pass": "String"
             }
         }
     ]

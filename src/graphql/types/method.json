@@ -1,6 +1,8 @@
 {
     "Query": {
-        "getUser(id: String)": "User"
+        "getUser(id: String)": "User",
+        "signIn(id: String, pass: String)": "Token",
+        "signOut(id: String)": "ResolveType!"
     },
     "Mutation": {
         "setUser(input: UserInput!)": "ResolveType!"

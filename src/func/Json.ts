@@ -18,19 +18,19 @@ class Json {
             const types = _.get(json,"types",[]);
             for(const type of types) {
                 const keys = Object.keys(type);
-                result += `type ${keys[0]} {\n`;
+                result += `type ${keys[0]}{`;
                 result = this.appendObjectValue(type,keys[0],result);
             }
             const inputs = _.get(json,"inputs",[]);
             for(const input of inputs) {
                 const keys = Object.keys(input);
-                result += `input ${keys[0]} {\n`;
+                result += `input ${keys[0]}{`;
                 result = this.appendObjectValue(input,keys[0],result);
             }
         } else {
             const keys = Object.keys(json);
             for(const key of keys) {
-                result += `type ${key} {\n`;
+                result += `type ${key}{`;
                 result = this.appendObjectValue(json,key,result);
             }
         }
@@ -43,12 +43,12 @@ class Json {
         for(const field of fieldsKey) {
             const fieldValue = _.get(fields,field,"");
             if(typeof fieldValue == 'string') {
-                result += ` ${field}: ${fieldValue}\n`
+                result += ` ${field}:${fieldValue}`
             } else {
                 this.appendObjectValue(fieldValue,field,result);
             }
         }
-        return result += `}\n`
+        return result += `}`
     }
 
 }
