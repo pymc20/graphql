@@ -1,5 +1,6 @@
 import { Application } from "oak";
 import { GraphQLService } from "./graphql/index.ts";
+import { oakCors } from "cors";
 
 
 const app = new Application();
@@ -16,6 +17,8 @@ app.use(async (ctx, next) => {
   const ms = Date.now() - start;
   ctx.response.headers.set("X-Response-Time", `${ms}ms`);
 });
+
+app.use(oakCors());
 
 app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 

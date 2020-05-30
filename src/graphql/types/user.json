@@ -4,12 +4,10 @@
         {
             "User": {
                 "id": "String",
-                "pass": "String"
-            }
-        },
-        {
-            "Token": {
-                "value": "String"
+                "hash": "String",
+                "salt": "String",
+                "attempts": "Int",
+                "token": "String"
             }
         },
         {
@@ -20,9 +18,16 @@
     ],
     "inputs": [
         {
-            "UserInput": {
+            "SignIn": {
                 "id": "String",
-                "pass": "String"
+                "token": "String"
+            }
+        },
+        {
+            "SignUp": {
+                "id": "String",
+                "hash": "String",
+                "salt": "String"
             }
         }
     ]

@@ -3,6 +3,9 @@
         "oak": "https://deno.land/x/oak/mod.ts",
         "oakGql": "https://deno.land/x/oak_graphql/mod.ts",
         "mongodb": "https://deno.land/x/mongo@v0.7.0/mod.ts",
-        "lodash": "https://deno.land/x/deno_lodash/mod.ts"
+        "lodash": "https://deno.land/x/deno_lodash/mod.ts",
+        "bcrypt": "https://deno.land/x/bcrypt/mod.ts",
+        "djwt": "https://deno.land/x/djwt/validate.ts",
+        "cors": "https://deno.land/x/cors/mod.ts"
     }
 }

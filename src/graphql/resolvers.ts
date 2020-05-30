@@ -1,12 +1,12 @@
-import { getUser, setUser, signIn, signOut } from './resolvers/UserFunc.ts';
+import { getHash, signUp, signIn, signOut } from './resolvers/UserFunc.ts';
 
 export const resolvers = {
     Query: {
-      getUser,
+      getHash,
       signIn,
       signOut
     },
     Mutation: {
-      setUser,
+      signUp,
     },
   };
