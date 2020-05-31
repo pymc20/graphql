@@ -6,6 +6,7 @@
         "lodash": "https://deno.land/x/deno_lodash/mod.ts",
         "bcrypt": "https://deno.land/x/bcrypt/mod.ts",
         "djwt": "https://deno.land/x/djwt/validate.ts",
-        "cors": "https://deno.land/x/cors/mod.ts"
+        "cors": "https://deno.land/x/cors/mod.ts",
+        "yaml": "https://deno.land/std/encoding/yaml.ts"
     }
 }

@@ -20,7 +20,7 @@ export const signIn = async (parent: any, {data}: any, context: any, info: any) 
   const valid = await validateJwt(jwt, key, { isThrowing: false })
   console.log('valid : ',valid);
   if(valid)
-    return {done:true}
+    return {done:true,context}
   else
     return {done:false}
 }

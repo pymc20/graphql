@@ -1,4 +1,7 @@
 import _ from "lodash";
+import { parse } from "yaml";
+
+const graphQLType = ["query","mutation","type","input","enum","interfaces","union"]
 
 class Json {
     readJsonSync(path:string):any {
@@ -11,6 +14,46 @@ class Json {
             throw err;
         }
     }
+
+    readYamlSync(path:string):any {
+        const decoder = new TextDecoder("utf-8");
+        const yaml = decoder.decode(Deno.readFileSync(path));
+        const parseYaml:any = parse(yaml);
+        let result = "";
+        for(const key of Object.keys(parseYaml)) {
+            const types = _.get(parseYaml,key,{});
+            const typeNames = Object.keys(types);
+            for(const typeName of typeNames) {
+                const customTypeNames = _.get(types,typeName,{});
+                const customTypeNameKeys = Object.keys(customTypeNames);
+                for(const customTypeName of customTypeNameKeys) {
+                    result += `${typeName} ${customTypeName}{ `;
+                    const properties = _.get(customTypeNames,customTypeName,{});
+                    const propertyKeys = Object.keys(properties);
+                    if(typeof properties === 'object') {
+                        for(const propertyName of propertyKeys) {
+                            const propertyValue = _.get(properties,propertyName,{});
+                            result += `${propertyName}:${propertyValue} `;
+                        }
+                    } else if(typeof properties === 'string') {
+                        result += `${properties}`;
+                    }
+                    result += `}`
+                }
+            }
+        }
+        return result;
+    }
+
+    test(json:any,key:any,result:string):string {
+        const obj = _.get(json,key,{});
+        const objKeys = Object.keys(obj);
+        for(const objKey of objKeys) {
+            _.endsWith(result,"{ ",result.length);
+        }
+        return result;
+    }
+
     makeGrapQLTypeString(json:any):string {
         let result = "";
         const typeId = _.get(json,"typeId","");

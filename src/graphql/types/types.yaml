@@ -1,0 +1,26 @@
+User:
+  type:
+    User:
+      id: String
+      hash: String
+      salt: String
+      attempts: Int
+      token: String
+    ResolveType:
+      done: Boolean
+  input:
+    SignIn:
+      id: String
+      token: String
+    SignUp:
+      id: String
+      hash: String
+      salt: String
+Schema:
+  type:
+    Query:
+      'getHash(id: String)': 'User'
+      'signIn(data:SignIn)': 'ResolveType!'
+      'signOut(id: String)': 'ResolveType!'
+    Mutation:
+      'signUp(data: SignUp!)': 'ResolveType!'
