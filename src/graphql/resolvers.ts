@@ -1,4 +1,4 @@
-import { getHash, signUp, signIn, signOut } from './resolvers/UserFunc.ts';
+import { getHash, signUp, signIn, signOut, updateUser, deleteUser } from './resolvers/UserFunc.ts';
 
 export const resolvers = {
     Query: {
@@ -8,5 +8,7 @@ export const resolvers = {
     },
     Mutation: {
       signUp,
+      updateUser,
+      deleteUser
     },
   };

@@ -16,11 +16,20 @@ User:
       id: String
       hash: String
       salt: String
+    UpdateUser:
+      id: String!
+      hash: String
+      salt: String
+      attempts: Int
+      token: String
 Schema:
   type:
     Query:
-      'getHash(id: String)': 'User'
-      'signIn(data:SignIn)': 'ResolveType!'
-      'signOut(id: String)': 'ResolveType!'
+      "getHash(id: String)": User
+      "signIn(data:SignIn)": ResolveType!
+      "signOut(id: String)": ResolveType!
     Mutation:
-      'signUp(data: SignUp!)': 'ResolveType!'
+      "signUp(data: SignUp!)": ResolveType!
+      "updateUser(data:UpdateUser)": ResolveType!
+      "deleteUser(id:String)": ResolveType!
+      

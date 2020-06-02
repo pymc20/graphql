@@ -45,15 +45,6 @@ class Json {
         return result;
     }
 
-    test(json:any,key:any,result:string):string {
-        const obj = _.get(json,key,{});
-        const objKeys = Object.keys(obj);
-        for(const objKey of objKeys) {
-            _.endsWith(result,"{ ",result.length);
-        }
-        return result;
-    }
-
     makeGrapQLTypeString(json:any):string {
         let result = "";
         const typeId = _.get(json,"typeId","");
@@ -96,4 +87,4 @@ class Json {
 
 }
 
-export default new Json();
+export default Json;
