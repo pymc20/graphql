@@ -3,7 +3,9 @@ import Json from "../../func/Json.ts";
 import _ from "lodash";
 import { validateJwt } from "djwt";
 
-const UserType = Json.readJsonSync("src/graphql/types/user.json");
+const json = new Json();
+
+const UserType = json.readJsonSync("src/graphql/types/user.json");
 const typeId = _.get(UserType,"typeId","");
 const UserCollection = db.collection(typeId);
 

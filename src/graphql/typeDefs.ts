@@ -1,18 +1,30 @@
-import Json from "../func/Json.ts";
-import _ from "lodash";
-const json = new Json();
-const typesPath = `${Deno.cwd()}/src/graphql/types`;
-let typeDefs = ``;
-
-for(const dir of Deno.readDirSync(typesPath)) {
-  const fileName = _.get(dir,"name","");
-  const filePath = `${typesPath}/${fileName}`
-  if(_.endsWith(fileName,'yaml',fileName.length)) {
-    typeDefs += json.readYamlSync(filePath);
-  } else {
-    // const json = Json.readJsonSync(filePath);
-    // typeDefs += Json.makeGrapQLTypeString(json);
-  }
+export const typeDefs = `
+type User {
+    id: String
+    hash: String
+    salt: String
+    attempts: Int
+    token: String
+}
+ResolveType {
+    done: Boolean
 }
 
-export default typeDefs
+input SignIn {
+    id: String
+    token: String
+}
+input SignUp {
+    id: String
+    hash: String
+    salt: String
+}
+type Query {
+    getHash(id: String): User
+    signIn(data:SignIn): ResolveType!
+    signOut(id: String): ResolveType!
+},
+type Mutation {
+    signUp(data: SignUp!): ResolveType!
+}
+`

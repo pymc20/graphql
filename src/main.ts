@@ -1,7 +1,6 @@
-import { Application } from "oak";
+import { Application, Router } from "oak";
 import { GraphQLService } from "./graphql/index.ts";
 import { oakCors } from "cors";
-
 
 const app = new Application();
 
