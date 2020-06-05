@@ -1,13 +1,8 @@
 import { db } from "../../mongo.ts";
-import Json from "../../func/Json.ts";
 import _ from "lodash";
 import { validateJwt } from "djwt";
 
-const json = new Json();
-
-const UserType = json.readJsonSync("src/graphql/types/user.json");
-const typeId = _.get(UserType,"typeId","");
-const UserCollection = db.collection(typeId);
+const UserCollection = db.collection("User");
 
 export const getHash = async (parent: any, id: any, context: any, info: any) => {
   const test = await UserCollection.findOne(id);
