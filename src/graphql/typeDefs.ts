@@ -4,15 +4,9 @@ type User {
     hash: String
     salt: String
     attempts: Int
-    token: String
 }
-ResolveType {
+type ResolveType {
     done: Boolean
-}
-
-input SignIn {
-    id: String
-    token: String
 }
 input SignUp {
     id: String
@@ -21,10 +15,12 @@ input SignUp {
 }
 type Query {
     getHash(id: String): User
-    signIn(data:SignIn): ResolveType!
+    signIn(id: String): ResolveType!
     signOut(id: String): ResolveType!
 },
 type Mutation {
     signUp(data: SignUp!): ResolveType!
+    updateUser(data: SignUp): ResolveType!
+    deleteUser(id: String): ResolveType!
 }
 `

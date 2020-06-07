@@ -1,10 +1,10 @@
-import { assertEquals, assert } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals, assert } from "denoTest";
 import _ from "lodash";
 
 const createQuery = `
 mutation {
   signUp(data: {
-    id: "admin"
+    id: "test"
     hash: "1234"
     salt: "abcd"
   }) {
@@ -13,8 +13,7 @@ mutation {
 }`;
 const readQuery = `
 {
-  getHash(id: "admin") {
-    id
+  getHash(id: "test") {
     hash
     salt
   }
@@ -22,7 +21,7 @@ const readQuery = `
 const updateQuery = `
 mutation {
   updateUser(data: {
-    id: "admin"
+    id: "test"
     hash: "4567"
     salt: "efgh"
   }) {
@@ -31,7 +30,7 @@ mutation {
 }`;
 const deleteQuery = `
 mutation {
-  deleteUser(id: "admin") {
+  deleteUser(id: "test") {
     done
   }
 }`;
@@ -64,7 +63,6 @@ Deno.test("User Read Test",async () => {
   const id = _.get(json,"data.getHash.id","");
   const hash = _.get(json,"data.getHash.hash","");
   const salt = _.get(json,"data.getHash.salt","");
-  assertEquals(id,"admin");
   assertEquals(hash,"1234");
   assertEquals(salt,"abcd");
 })

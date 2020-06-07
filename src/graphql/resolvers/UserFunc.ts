@@ -1,25 +1,23 @@
 import { db } from "../../mongo.ts";
-import _ from "lodash";
-import { validateJwt } from "djwt";
 
 const UserCollection = db.collection("User");
 
 export const getHash = async (parent: any, id: any, context: any, info: any) => {
-  const test = await UserCollection.findOne(id);
-  const hash = _.get(test,"hash","");
-  const salt = _.get(test,"salt","");
-  return {...test};
+  const user = await UserCollection.findOne(id);
+  const test = await UserCollection.updateOne({id},{$inc:{attempts:1}});
+  console.log(test);
+  const { hash, salt } = user;
+  return {
+    hash,
+    salt
+  };
 }
 
-export const signIn = async (parent: any, {data}: any, context: any, info: any) => {
-  const jwt = _.get(data,"token","");
-  const key = "secret"
-  const valid = await validateJwt(jwt, key, { isThrowing: false })
-  console.log('valid : ',valid);
-  if(valid)
-    return {done:true,context}
-  else
-    return {done:false}
+export const signIn = async (parent: any, id: any, context: any, info: any) => {
+  await UserCollection.updateOne({id},{$set:{attempts:0}});
+  return {
+    done:true
+  }
 }
 
 export const signOut = (parent: any, id: any, context: any, info: any) => {
@@ -43,7 +41,7 @@ export const signUp = async (parent: any, {data}: any, context: any, info: any) 
 
 export const updateUser = async (parent: any, {data}: any, context: any, info: any) => {
   try {
-    const id = _.get(data,"id","");
+    const { id } = data;
     await UserCollection.updateOne({id},{$set:data});
     return {
       done: true
@@ -59,7 +57,6 @@ export const updateUser = async (parent: any, {data}: any, context: any, info: a
 
 export const deleteUser = async (parent: any, id: any, context: any, info: any) => {
   try {
-    console.log(id);
     await UserCollection.deleteOne(id);
     return {
       done: true
