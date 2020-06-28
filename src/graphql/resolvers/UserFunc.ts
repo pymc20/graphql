@@ -5,7 +5,6 @@ const UserCollection = db.collection("User");
 export const getHash = async (parent: any, id: any, context: any, info: any) => {
   const user = await UserCollection.findOne(id);
   const test = await UserCollection.updateOne({id},{$inc:{attempts:1}});
-  console.log(test);
   const { hash, salt } = user;
   return {
     hash,
